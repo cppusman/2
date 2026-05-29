@@ -1,4 +1,3 @@
-// Таймер обратного отсчёта до 31 июля 2026, 11:00 по Перми (UTC+5)
 const daysEl = document.getElementById("days");
 const hoursEl = document.getElementById("hours");
 const minutesEl = document.getElementById("minutes");
@@ -11,10 +10,10 @@ function pad(value) {
 }
 
 function setCountdownValues(days, hours, minutes, seconds) {
-  if (daysEl) daysEl.textContent = pad(days);
-  if (hoursEl) hoursEl.textContent = pad(hours);
-  if (minutesEl) minutesEl.textContent = pad(minutes);
-  if (secondsEl) secondsEl.textContent = pad(seconds);
+  daysEl.textContent = pad(days);
+  hoursEl.textContent = pad(hours);
+  minutesEl.textContent = pad(minutes);
+  secondsEl.textContent = pad(seconds);
 }
 
 function updateCountdown() {
@@ -39,7 +38,6 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// Анимация появления секций при скролле
 const revealSections = document.querySelectorAll(".reveal-section");
 
 if (revealSections.length > 0) {
