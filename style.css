@@ -1,0 +1,301 @@
+/* ---------- ПОДКЛЮЧЕНИЕ ШРИФТА ---------- */
+@font-face {
+  font-family: 'Miama Nueva';
+  src: url('fonts/MiamaNueva.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ---------- БАЗА ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Cormorant Garamond", serif;
+  scroll-behavior: smooth;
+  background-color: #fcfbfa;
+}
+
+/* Вспомогательные классы для шрифтов */
+.heading-font {
+  font-family: "Forum", serif;
+}
+
+.decorative-script {
+  font-family: 'Miama Nueva', cursive;
+  line-height: 1.7;
+  letter-spacing: 0.015em;
+  font-weight: normal;
+}
+
+.decorative-serif {
+  font-family: "Forum", serif;
+}
+
+.snap-wrapper {
+  min-height: 100vh;
+}
+
+/* ---------- АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ ---------- */
+.screen-slide {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  padding: 2rem 1rem;
+  position: relative;
+  isolation: isolate;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+  background-color: transparent;
+}
+
+.screen-slide + .screen-slide {
+  border-top: 1px solid rgba(123, 142, 112, 0.12);
+}
+
+.screen-slide.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- ФОНЫ ДЛЯ ДЕСКТОПА (ширина >= 768px) ---------- */
+.screen-bg {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: scroll;
+}
+
+.panel-bg-1 {
+  background-color: #d9cbb3;
+  background-image: url("images/panel-1-bg.jpg");
+}
+
+.panel-bg-2 {
+  background-color: #cbbd9e;
+  background-image: url("images/panel-2-bg.jpg");
+}
+
+.panel-bg-schedule {
+  background-color: #bfaa84;
+  background-image: url("images/schedule-bg.jpg");
+}
+
+.floral-top-bg {
+  background-image: url("images/flower-top.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+}
+
+/* ---------- ОБЩИЕ СТИЛИ БЛОКОВ ---------- */
+.mobile-card {
+  width: min(92vw, 32rem);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-card-inner {
+  width: 100%;
+  padding: 1.5rem 1.2rem;
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+.content-shell {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 1.5rem;
+  padding: 1.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.countdown-top {
+  background: rgba(123, 142, 112, 0.15);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(123, 142, 112, 0.2);
+}
+
+.timer-box-olive {
+  background: #7b8e70;
+  box-shadow: 0 4px 12px rgba(123, 142, 112, 0.2);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  padding: 10px;
+}
+
+.timer-value {
+  font-family: 'Miama Nueva', cursive;
+  min-width: 2ch;
+  font-size: 2.8rem;
+  line-height: 1;
+  font-weight: normal;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-label {
+  font-family: 'Miama Nueva', cursive;
+  margin-top: -0.2rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.radio-compact {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.accent-btn {
+  background-color: #7b8e70;
+  font-family: "Forum", serif;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.accent-btn:hover {
+  background-color: #6b7f61;
+  transform: translateY(-1px);
+}
+
+.rsvp-panel {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(123, 142, 112, 0.25);
+}
+
+.alcohol-block {
+  background: rgba(244, 247, 241, 0.85);
+  border: 1px solid rgba(123, 142, 112, 0.2);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+/* ---------- ДЕСКТОП (шире 768px) ---------- */
+@media (min-width: 768px) {
+  .screen-slide {
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .mobile-card {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .mobile-card-inner {
+    padding: 3rem 4rem;
+    background: rgba(252, 251, 250, 0.4);
+    border-radius: 0;
+    border: none;
+    backdrop-filter: none;
+  }
+
+  .content-shell {
+    padding: 3rem;
+    background: rgba(252, 251, 250, 0.35);
+  }
+
+  .timer-value {
+    font-size: 3.5rem;
+  }
+
+  .radio-compact {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
+
+/* ---------- МОБИЛЬНЫЕ УСТРОЙСТВА (до 767px) ---------- */
+@media (max-width: 767px) {
+  /* Единый фиксированный фон на body */
+  body {
+    background-image: url("images/flower-top.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  /* Отключаем все фоновые картинки секций */
+  .screen-bg,
+  .panel-bg-1,
+  .panel-bg-2,
+  .panel-bg-schedule,
+  .floral-top-bg {
+    background-image: none !important;
+    background-color: transparent !important;
+  }
+
+  /* Скрываем абсолютное изображение flower-top на первом экране, чтобы не дублировалось */
+  .floral-top-bg img {
+    display: none;
+  }
+
+  /* Улучшаем читаемость текста: подложка светлее и лёгкое размытие */
+  .mobile-card-inner,
+  .content-shell {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  /* Адаптивные отступы и размеры */
+  .screen-slide {
+    padding: 3rem 1rem;
+  }
+
+  .mobile-card {
+    width: 100%;
+  }
+
+  .mobile-card-inner {
+    border-radius: 28px;
+    padding: 2rem 1.4rem;
+  }
+
+  .content-shell {
+    border-radius: 28px;
+    padding: 2rem 1rem;
+  }
+
+  .timer-value {
+    font-size: 2.2rem;
+  }
+
+  .timer-label {
+    font-size: 1rem;
+  }
+
+  .radio-compact {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .accent-btn {
+    font-size: 1.2rem;
+  }
+}
