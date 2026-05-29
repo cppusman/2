@@ -54,3 +54,53 @@ if (revealSections.length > 0) {
 
   revealSections.forEach((section) => observer.observe(section));
 }
+
+// ОТПРАВКА ФОРМЫ БЕЗ ПЕРЕЗАГРУЗКИ СТРАНИЦЫ
+const weddingForm = document.querySelector('form');
+const rsvpContainer = document.querySelector('.rsvp-panel');
+
+if (weddingForm && rsvpContainer) {
+  weddingForm.addEventListener('submit', async function(event) {
+    event.preventDefault(); // Это главное! Блокирует открытие окна Formspree
+    
+    // Находим кнопку и меняем текст, чтобы гость видел, что процесс пошел
+    const submitBtn = weddingForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Отправка...';
+    submitBtn.disabled = true;
+
+    // Собираем данные из полей анкеты
+    const formData = new FormData(weddingForm);
+    
+    try {
+      // Отправляем данные на Formspree в фоновом режиме
+      const response = await fetch(weddingForm.action, {
+        method: weddingForm.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        // Если всё ушло, плавно заменяем анкету на красивое спасибо
+        rsvpContainer.innerHTML = `
+          <div class="text-center py-8 animate-fade-in">
+            <h4 class="heading-font text-2xl md:text-5xl text-[#7b866f]">СПАСИБО!</h4>
+            <p class="mt-4 text-lg md:text-[2.2rem] decorative-script leading-relaxed text-stone-700">
+              Ваша анкета успешно доставлена.<br>
+              Олег и Екатерина очень ждут вас!
+            </p>
+          </div>
+        `;
+      } else {
+        throw new Error('Ошибка при отправке');
+      }
+    } catch (error) {
+      // Если что-то сломалось (например, у гостя пропал интернет)
+      alert('Произошла ошибка. Пожалуйста, попробуйте еще раз.');
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+}
